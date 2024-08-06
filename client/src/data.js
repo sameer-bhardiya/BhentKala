@@ -3,7 +3,7 @@ import { colors } from "@mui/material";
 export const sliderItems = [
     {
         id: 1,
-        img: "./image/t3.png",
+        img: "./image/sl1.jpg",
         title:"Old Distorted Photo Restoration ",
         desc:"Launch your new career with a Professional Certificate on Online4u",
         bg:"f5fafd",
@@ -11,7 +11,7 @@ export const sliderItems = [
     },
     {
         id: 2,
-        img: "./image/t2.png",
+        img: "./image/sl1.jpg",
         title:"Water Color Painting",
         desc:"30% OFF ON EVERY BRAND, 10% OFF EXTRA OFF ON CREDIT CARD",
         // bg:"fcf1ed",
@@ -19,7 +19,7 @@ export const sliderItems = [
     },
     {
         id: 3,
-        img: "./image/3.png",
+        img: "./image/mt1.png",
         title:"Mosaic Art Photo",
         desc:"30% OFF ON EVERY BRAND, 10% OFF EXTRA OFF ON CREDIT CARD",
         // bg:"fbf0f4",
