@@ -1,10 +1,10 @@
-import { KeyboardArrowDownOutlined, Search, ShoppingCartOutlined } from '@mui/icons-material'
-import { Badge } from '@mui/material'
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import { mobile } from "../responsive"
-import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { KeyboardArrowDownOutlined, KeyboardArrowUpOutlined, ShoppingCartOutlined } from '@mui/icons-material';
+import { Badge } from '@mui/material';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { mobile } from "../responsive";
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Containers = styled.div`
   height: 60px;
@@ -57,13 +57,14 @@ const Center = styled.div`
 const MenuItem = styled.div`
   position: relative;
   display: flex;
+  align-items: center;
   font-size: 16px;
   cursor: pointer;
   margin-left: 25px;
   ${mobile({
     fontSize: "15px", marginLeft: "10px"
   })};
-   &:hover {
+  &:hover {
     font-weight: bold;
   }
 `;
@@ -101,25 +102,21 @@ const Right = styled.div`
 `;
 
 const Navbar1 = () => {
-  const quantity = useSelector(state => state.cart.quantity)
-  const user = useSelector(state => state.user.currentUser)
-  const [dropdownOpen, setDropdownOpen] = useState({
-    digitalArt: false,
-    photoServices: false,
-    customGifts: false
-  })
+  const quantity = useSelector(state => state.cart.quantity);
+  const user = useSelector(state => state.user.currentUser);
+  const [openDropdown, setOpenDropdown] = useState(null);
 
   const LogOut = e => {
-    window.localStorage.clear()
-    window.location.href = '/'
+    window.localStorage.clear();
+    window.location.href = '/';
   }
 
   const handleMouseEnter = (menu) => {
-    setDropdownOpen({ ...dropdownOpen, [menu]: true })
+    setOpenDropdown(menu);
   }
 
-  const handleMouseLeave = (menu) => {
-    setDropdownOpen({ ...dropdownOpen, [menu]: false })
+  const handleMouseLeave = () => {
+    setOpenDropdown(null);
   }
 
   return (
@@ -131,29 +128,38 @@ const Navbar1 = () => {
           </Logo>
         </Left>
         <Center>
-          <MenuItem onMouseEnter={() => handleMouseEnter('digitalArt')} onMouseLeave={() => handleMouseLeave('digitalArt')}>
+          <MenuItem
+            onMouseEnter={() => handleMouseEnter('digitalArt')}
+            onMouseLeave={handleMouseLeave}
+          >
             <span>Digital Art</span>
-            <KeyboardArrowDownOutlined />
-            <DropdownMenu open={dropdownOpen.digitalArt}>
+            {openDropdown === 'digitalArt' ? <KeyboardArrowUpOutlined /> : <KeyboardArrowDownOutlined />}
+            <DropdownMenu open={openDropdown === 'digitalArt'}>
               <DropdownItem to="/">Digital Sketch</DropdownItem>
               <DropdownItem to="/">Digital Oil Painting</DropdownItem>
               <DropdownItem to="/">Wall Art Digital Painting</DropdownItem>
             </DropdownMenu>
           </MenuItem>
-          <MenuItem onMouseEnter={() => handleMouseEnter('photoServices')} onMouseLeave={() => handleMouseLeave('photoServices')}>
+          <MenuItem
+            onMouseEnter={() => handleMouseEnter('photoServices')}
+            onMouseLeave={handleMouseLeave}
+          >
             <span>Photo Services</span>
-            <KeyboardArrowDownOutlined />
-            <DropdownMenu open={dropdownOpen.photoServices}>
+            {openDropdown === 'photoServices' ? <KeyboardArrowUpOutlined /> : <KeyboardArrowDownOutlined />}
+            <DropdownMenu open={openDropdown === 'photoServices'}>
               <DropdownItem to="/">Image Manipulation</DropdownItem>
               <DropdownItem to="/">Damage Photo Restoration</DropdownItem>
               <DropdownItem to="/">B&W to Color Photo</DropdownItem>
               <DropdownItem to="/">Photo Collage</DropdownItem>
             </DropdownMenu>
           </MenuItem>
-          <MenuItem onMouseEnter={() => handleMouseEnter('customGifts')} onMouseLeave={() => handleMouseLeave('customGifts')}>
+          <MenuItem
+            onMouseEnter={() => handleMouseEnter('customGifts')}
+            onMouseLeave={handleMouseLeave}
+          >
             <span>Custom Gifts</span>
-            <KeyboardArrowDownOutlined />
-            <DropdownMenu open={dropdownOpen.customGifts}>
+            {openDropdown === 'customGifts' ? <KeyboardArrowUpOutlined /> : <KeyboardArrowDownOutlined />}
+            <DropdownMenu open={openDropdown === 'customGifts'}>
               <DropdownItem to="/">Video Invitation</DropdownItem>
               <DropdownItem to="/">Trendy Invitation Card</DropdownItem>
               <DropdownItem to="/">Caricature Art</DropdownItem>
