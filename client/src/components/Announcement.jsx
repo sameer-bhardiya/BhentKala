@@ -12,7 +12,7 @@ const Container = styled.div`
     font-weight:bold;
     z-index: 1001;
     position: fixed;
-    /* top:0; */
+    top:0;
 `
 
 const Announcement = () => {

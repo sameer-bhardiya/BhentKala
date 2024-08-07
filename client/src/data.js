@@ -4,24 +4,24 @@ export const sliderItems = [
     {
         id: 1,
         img: "./image/sl1.jpg",
-        title:"Old Distorted Photo Restoration ",
-        desc:"Launch your new career with a Professional Certificate on Online4u",
+        title:"Water Color Painting",
+        desc:"Immerse Yourself in the Fluid Grace of Water Color Artistry on BhenKala",
+        // bg:"fcf1ed",
         bg:"f5fafd",
-
     },
     {
         id: 2,
-        img: "./image/sl1.jpg",
-        title:"Water Color Painting",
-        desc:"30% OFF ON EVERY BRAND, 10% OFF EXTRA OFF ON CREDIT CARD",
-        // bg:"fcf1ed",
+        img: "./image/restoration1.jpg",
+        title:"Old Distorted Photo Restoration ",
+        desc:"Revive Memories: Professional Photo Restoration Services on BhentKala",
         bg:"f5fafd",
+
     },
     {
         id: 3,
         img: "./image/mt1.png",
         title:"Mosaic Art Photo",
-        desc:"30% OFF ON EVERY BRAND, 10% OFF EXTRA OFF ON CREDIT CARD",
+        desc:"Unveil the Beauty of Art Through Intricate Mosaic Patterns on Bhenkala",
         // bg:"fbf0f4",
         bg:"f5fafd",
 
