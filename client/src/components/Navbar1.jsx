@@ -63,6 +63,9 @@ const MenuItem = styled.div`
   ${mobile({
     fontSize: "15px", marginLeft: "10px"
   })};
+   &:hover {
+    font-weight: bold;
+  }
 `;
 
 const DropdownMenu = styled.div`
