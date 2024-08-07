@@ -1,4 +1,4 @@
-import { KeyboardArrowDownOutlined, KeyboardArrowUpOutlined, ShoppingCartOutlined } from '@mui/icons-material';
+import { KeyboardArrowDownOutlined, KeyboardArrowUpOutlined, ShoppingCartOutlined,Search } from '@mui/icons-material';
 import { Badge } from '@mui/material';
 import React, { useState } from 'react';
 import styled from 'styled-components';
@@ -7,9 +7,9 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const Containers = styled.div`
-  height: 60px;
+  height: 80px;
   position: fixed;
-  top: 30px;
+  top: 25px;
   width: 100%;
   background-color: white;
   z-index: 1000;
@@ -23,9 +23,10 @@ const Wrapper = styled.div`
   display: flex;
   align-items:center;
   justify-content:space-between;
-  ${mobile({
-    padding:"10px 0px"
-  })};
+  @media (max-width: 488px) {
+    padding:"10px 0px";
+    /* display:none; */
+  }
 `;
 
 const Left = styled.div`
@@ -34,12 +35,29 @@ const Left = styled.div`
   align-items:center;
 `;
 
+const SearchContainer = styled.div`
+    border: 0.5px solid lightgray;
+    display:flex;
+    align-items:center;
+    margin-left:25px;
+    padding: 5px 13px ;
+    border-radius:50px;
+  `;
+
+const Input = styled.input`
+border: none;
+/* padding-left:50px; */
+outline: none;
+${mobile({
+  width:"50px;"
+  })};
+`;
 const Logo = styled.div`
   img {
-    height: 40px;
+    height: 60px;
     background:black;
     border-radius:5px;
-    @media (max-width: 428px) {
+    @media (max-width: 488px) {
       height: 30px; /* Adjust the height for mobile */
     }
   }
@@ -49,9 +67,9 @@ const Center = styled.div`
   flex: 1;
   display: flex;
   justify-content: flex-end;
-  ${mobile({
-    flex: 2, justifycontent: "center", marginRight: "10px"
-  })};
+  @media (max-width: 488px) {
+    flex: 2; justify-content: "center"; margin-right: "10px"
+  };
 `;
 
 const MenuItem = styled.div`
@@ -61,9 +79,9 @@ const MenuItem = styled.div`
   font-size: 16px;
   cursor: pointer;
   margin-left: 25px;
-  ${mobile({
-    fontSize: "15px", marginLeft: "10px"
-  })};
+  @media (max-width: 488px) {
+    font-Size: "15px"; margin-left: "10px";
+  };
   &:hover {
     font-weight: bold;
   }
@@ -96,9 +114,9 @@ const Right = styled.div`
   flex: 1;
   display: flex;
   justify-content: flex-end;
-  ${mobile({
-    flex: 2, justifycontent: "center", marginRight: "10px"
-  })};
+  @media (max-width: 488px) {
+    flex: 2; justify-content:"center"; margin-right: "10px";
+  };
 `;
 
 const Navbar1 = () => {
@@ -124,8 +142,12 @@ const Navbar1 = () => {
       <Wrapper>
         <Left>
           <Logo>
-            <img src="./image/logo.png" alt="Online4u Logo" />
+            <img src="../../image/logo.png" alt="BhenKala Logo" />
           </Logo>
+           <SearchContainer>
+            <Input placeholder='search here anything' />
+            <Search />
+          </SearchContainer>
         </Left>
         <Center>
           <MenuItem

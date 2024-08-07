@@ -6,12 +6,13 @@ import Slider from '../components/Slider'
 import Products from '../components/Products'
 import Newsletter from '../components/Newsletter'
 import Footer from '../components/Footer'
+import { Margin } from '@mui/icons-material'
 
 const Home = () => {
   return (
     <div>
-      <Navbar1/>
       <Announcement/>
+      <Navbar1/>
       <Slider/>
       <Categories/>
       <Products/>

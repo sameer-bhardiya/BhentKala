@@ -10,11 +10,13 @@ const Container = styled.div`
     width:100%;
     height: 100vh;
     display: flex;
+    margin-top:50px;
     position: relative;
     overflow: hidden;
     ${mobile({
         display:"none"
     })}
+
 `
 const Arrow = styled.div`
     width:50px;
