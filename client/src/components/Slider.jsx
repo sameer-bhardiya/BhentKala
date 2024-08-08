@@ -99,7 +99,7 @@ const Slider = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setSlideIndex(prev => (prev < 2 ? prev + 1 : 0));
-        }, 3000); // Change slide every 3 seconds
+        }, 5000); // Change slide every 3 seconds
 
         return () => clearInterval(interval); // Clear interval on component unmount
     }, []);
