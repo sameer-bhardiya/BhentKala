@@ -1,6 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { publicRequest } from "../requestMethods";
+import Announcement from "../components/Announcement";
+import Navbar1 from "../components/Navbar1";
 
 const Container = styled.div`
 width:100vw;
@@ -51,7 +53,7 @@ const Register = () => {
     const [password,setPassword ]= useState("");
     const [email,setEmail ]= useState("");
     const [error,setError] = useState(false);
-    
+
     // console.log(username);
     // console.log(email);
     // console.log(password);
@@ -68,10 +70,12 @@ const Register = () => {
         } catch (err) {
           setError(true);
         }
-      
+
       };
     return (
         <Container>
+            <Announcement/>
+            <Navbar1/>
             <Wrapper>
                 <Title>CREATE AN ACCOUNT</Title>
                 <Form>
