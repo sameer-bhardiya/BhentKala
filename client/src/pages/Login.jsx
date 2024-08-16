@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { login } from "../redux/apiCalls";
+import Announcement from "../components/Announcement";
+import Navbar1 from "../components/Navbar1";
 
 const Container = styled.div`
 width:100vw;
@@ -71,8 +73,10 @@ const Login = () => {
     e.preventDefault();
     login(dispatch,{username,password});
   }
-  return ( 
+  return (
     <Container>
+      <Announcement/>
+      <Navbar1/>
             <Wrapper>
                 <Title>SIGN IN </Title>
                 <Form>
@@ -80,10 +84,10 @@ const Login = () => {
                      placeholder="username"
                      onChange={(e)=>setUsername(e.target.value)}
                      />
-                    <Input 
-                    placeholder="password" 
+                    <Input
+                    placeholder="password"
                     // type="password"
-                     onChange={(e)=>setPassword(e.target.value)} 
+                     onChange={(e)=>setPassword(e.target.value)}
                      />
                     <Button onClick={handleClick} disabled = {isFtching} >SIGN IN</Button>
                     {error && <Error>Something not right</Error>}
@@ -91,7 +95,7 @@ const Login = () => {
                     <Link>CREATE AN ACCOUNT </Link>
                     <Agreement>Guest username: <b>admin</b>  PASSWORD:<b> 12655<b></b></b></Agreement>
 
- 
+
                 </Form>
 
             </Wrapper>

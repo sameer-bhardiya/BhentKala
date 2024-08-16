@@ -141,9 +141,11 @@ const Navbar1 = () => {
     <Containers>
       <Wrapper>
         <Left>
+        <Link to="/">
           <Logo>
             <img src="../../image/logo.png" alt="BhenKala Logo" />
           </Logo>
+        </Link>
            <SearchContainer>
             <Input placeholder='search here anything' />
             <Search />

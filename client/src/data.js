@@ -31,22 +31,22 @@ export const sliderItems = [
 export const categories = [
     {
         id: 1,
-        img: "./image/m1.jpg",
-        title:"CHEMISTRY ",
-        cat:"women",
+        img: "./image/service1.jpg",
+        title:"PHOTO COLLAGE",
+        cat:"photo",
     },
     {
         id: 2,
-        img: "./image/m2.jpg",
-        title:"COMPUTER SCIENCE ",
-        cat:"men",
+        img: "./image/s2.jpg",
+        title:"TRENDY INVITATION CARD",
+        cat:"photo",
 
     },
     {
         id: 3,
         img: "./image/ok3.jpeg",
-        title:"Forestry ",
-        cat:"jeans",
+        title:"VIDEO INVITATION",
+        cat:"Video",
 
     },
 

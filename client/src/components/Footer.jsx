@@ -153,7 +153,7 @@ const Footer = () => {
         <ContactItem> <Room style={{marginRight:"10px"}}/>Risali</ContactItem>
         <ContactItem><Phone style={{marginRight:"10px"}}/> 8319677***</ContactItem>
         <ContactItem>
-          <MailLockOutlined style={{marginRight:"10px"}}/>sambhardiya@gmail.com
+          <MailLockOutlined style={{marginRight:"10px"}}/>BhentKala@gmail.com
         </ContactItem>
       </Right>
     </Container>
