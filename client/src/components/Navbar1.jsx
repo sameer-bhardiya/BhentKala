@@ -143,7 +143,7 @@ const Navbar1 = () => {
         <Left>
         <Link to="/">
           <Logo>
-            <img src="../../image/logo.png" alt="BhenKala Logo" />
+            <img src="./image/logo.png" alt="BhenKala Logo" />
           </Logo>
         </Link>
            <SearchContainer>
