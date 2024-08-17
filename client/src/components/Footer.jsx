@@ -100,7 +100,7 @@ const Footer = () => {
       <Left>
       <Logo>
             <img src="../../image/logo.png" alt="BhenKala Logo" />
-      <h1> BhenKala </h1>
+      <h1> BhentKala </h1>
       </Logo>
       <Desc>
         There are many variation of passages of lorem available ,
