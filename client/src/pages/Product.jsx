@@ -14,6 +14,7 @@ const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 50px;
   display: flex;
+  margin-top:6%;
 `;
 const ImageContainer = styled.div`
   flex: 1;
@@ -34,8 +35,8 @@ const Desc = styled.p`
   margin: 20px 0px;
 `;
 const Price = styled.span`
-  font-weight: 100;
-  font-size: 40px;
+  font-weight: 600;
+  font-size: 20px;
 `;
 const FilterContainer = styled.div`
   width: 50%;
@@ -132,24 +133,30 @@ const Product = () => {
       <Navbar1 />
       <Wrapper>
         <ImageContainer>
-          <Image src={product.img} />
+          {/* <Image src={product.img} /> */}
+          <Image src="../image/product1.jpg"/>
         </ImageContainer>
         <InfoContainer>
-          <Title>{product.title}</Title>
-          <Desc>{product.desc}</Desc>
-          <Price>₹ {product.price}</Price>
+          {/* <Title>{product.title}</Title> */}
+          <Title>Digi Painting</Title>
+          {/* <Desc>{product.desc}</Desc> */}
+          <Desc>Get your photos beautifully hand-drawn using graphic pad & stylus pen. Previewed, framed & home delivered; Sunlight & water-resistant pigment ink is used for lifetime durability.</Desc>
+          {/* <Price>₹ {product.price}</Price> */}
+          <Price>₹ 700</Price>
+
           <FilterContainer>
-            <Filter>
+            {/* <Filter>
               <FilterTitle>Color</FilterTitle>
               {product.color?.map((c) => (
                 <FilterColor color={c} key={c} onClick={() => setColor(c)} />
               ))}
-            </Filter>
+            </Filter> */}
             <Filter>
-              <FilterTitle>Size</FilterTitle>
+              <FilterTitle>Select Frame Size</FilterTitle>
               <FilterSize onChange={(e) => setSize(e.target.value)}>
                 {product.size?.map((s) => (
-                  <FilterSizeOption key={s}>{s}</FilterSizeOption>
+                  // <FilterSizeOption key={s}>{s}</FilterSizeOption>
+                  <FilterSizeOption key={s}>A4 (9 x 13 in)</FilterSizeOption>
                 ))}
               </FilterSize>
             </Filter>
@@ -161,6 +168,7 @@ const Product = () => {
               <Add onClick={() => handleQuantity("inc")} />
             </AmountContainer>
             <Button onClick={handleClick}>ADD TO CART</Button>
+            <Button>Buy Now</Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>

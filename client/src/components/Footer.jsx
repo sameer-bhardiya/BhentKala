@@ -1,4 +1,4 @@
-import { Facebook, Instagram, MailLockOutlined, Phone, Room, Twitter } from "@mui/icons-material";
+import { Facebook, Instagram, MailLockOutlined, Phone, Room, Twitter, WhatsApp } from "@mui/icons-material";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { Link } from 'react-router-dom';
@@ -100,7 +100,7 @@ const Footer = () => {
       <Left>
       <Logo>
             <img src="../../image/logo.png" alt="BhenKala Logo" />
-      <h1> BhenKala </h1>
+      <h1> BhentKala </h1>
       </Logo>
       <Desc>
         There are many variation of passages of lorem available ,
@@ -117,9 +117,9 @@ const Footer = () => {
       <Instagram />
     </SocialIcon>
   </a>
-  <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+  <a href="https://web.whatsapp.com/" target="_blank" rel="noopener noreferrer">
     <SocialIcon color="55ACEE">
-      <Twitter />
+      <WhatsApp />
     </SocialIcon>
   </a>
 </SocialContainer>
