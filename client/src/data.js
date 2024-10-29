@@ -49,6 +49,26 @@ export const categories = [
         cat:"Video",
 
     },
+    {
+        id: 4,
+        img: "./image/sketch.jpg",
+        title:"Digital Sketch",
+        cat:"photo",
+    },
+    {
+        id: 5,
+        img: "./image/photoRestoration.jpg",
+        title:"Damage Photo Restoration",
+        cat:"photo",
+
+    },
+    {
+        id: 5,
+        img: "./image/wallArt.jpg",
+        title:"wallArt",
+        cat:"photo",
+
+    },
 
 ];
 

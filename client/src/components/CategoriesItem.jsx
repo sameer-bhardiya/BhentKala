@@ -58,7 +58,7 @@ const CategoriesItem = ({ item }) => {
       )}
       <Info>
         <Title>{item.title}</Title>
-        <Button>SHOP NOW</Button>
+        <Button>Order NOW</Button>
       </Info>
     </Container>
   );
