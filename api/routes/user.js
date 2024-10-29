@@ -3,10 +3,10 @@ const { varifyToken, varifyTokenAndAuthorization, varifyTokenAndAdmin } = requir
 
 const router = require("express").Router();
 
-//UPDATE 
+//UPDATE
 
 router.put("/:id",varifyTokenAndAuthorization ,async (req,res)=>{
-  
+
     if(req.body.password){
        req.body.password= CryptoJS.AES.encrypt(
             req.body.password,
@@ -71,7 +71,7 @@ router.get("/stats", varifyTokenAndAdmin,async (req,res)=>{
     const lastYear = new Date (date.setFullYear(date.getFullYear() - 1));
 
     try {
-        
+
         const data = await User.aggregate([
             { $match : {createdAt: {$gte: lastYear } } },
              {

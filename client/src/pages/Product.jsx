@@ -67,7 +67,7 @@ const FilterSize = styled.select`
 const FilterSizeOption = styled.option``;
 const AddContainer = styled.div`
   width: 50%;
-  display: flex;
+  /* display: flex; */
   align-items: center;
   justify-content: space-between;
 `;
@@ -139,10 +139,10 @@ const Product = () => {
         <InfoContainer>
           {/* <Title>{product.title}</Title> */}
           <Title>Digi Painting</Title>
-          {/* <Desc>{product.desc}</Desc> */}
-          <Desc>Get your photos beautifully hand-drawn using graphic pad & stylus pen. Previewed, framed & home delivered; Sunlight & water-resistant pigment ink is used for lifetime durability.</Desc>
-          {/* <Price>₹ {product.price}</Price> */}
-          <Price>₹ 700</Price>
+          <Desc>{product.desc}</Desc>
+          {/* <Desc>Get your photos beautifully hand-drawn using graphic pad & stylus pen. Previewed, framed & home delivered; Sunlight & water-resistant pigment ink is used for lifetime durability.</Desc> */}
+          <Price>₹ {product.price}</Price>
+          {/* <Price>₹ 700</Price> */}
 
           <FilterContainer>
             {/* <Filter>
@@ -155,8 +155,8 @@ const Product = () => {
               <FilterTitle>Select Frame Size</FilterTitle>
               <FilterSize onChange={(e) => setSize(e.target.value)}>
                 {product.size?.map((s) => (
-                  // <FilterSizeOption key={s}>{s}</FilterSizeOption>
-                  <FilterSizeOption key={s}>A4 (9 x 13 in)</FilterSizeOption>
+                  <FilterSizeOption key={s}>{s}</FilterSizeOption>
+                  // <FilterSizeOption key={s}>A4 (9 x 13 in)</FilterSizeOption>
                 ))}
               </FilterSize>
             </Filter>

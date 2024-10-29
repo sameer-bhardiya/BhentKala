@@ -7,6 +7,7 @@ import Products from '../components/Products'
 import Newsletter from '../components/Newsletter'
 import Footer from '../components/Footer'
 import { Margin } from '@mui/icons-material'
+import Testimonial from '../components/Testimonial'
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
       <Slider/>
       <Categories/>
       {/* <Products/> */}
+      <Testimonial/>
       <Newsletter/>
       <Footer/>
     </div>
