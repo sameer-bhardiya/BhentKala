@@ -8,6 +8,7 @@ import Newsletter from '../components/Newsletter'
 import Footer from '../components/Footer'
 import { Margin } from '@mui/icons-material'
 import Testimonial from '../components/Testimonial'
+import { Help } from '../components/Help'
 
 const Home = () => {
   return (
@@ -18,6 +19,7 @@ const Home = () => {
       <Categories/>
       {/* <Products/> */}
       <Testimonial/>
+      <Help/>
       <Newsletter/>
       <Footer/>
     </div>
