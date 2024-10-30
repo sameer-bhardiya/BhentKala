@@ -159,9 +159,9 @@ const Navbar1 = () => {
             <span>Digital Art</span>
             {openDropdown === 'digitalArt' ? <KeyboardArrowUpOutlined /> : <KeyboardArrowDownOutlined />}
             <DropdownMenu open={openDropdown === 'digitalArt'}>
-              <DropdownItem to="/">Digital Sketch</DropdownItem>
-              <DropdownItem to="/">Digital Oil Painting</DropdownItem>
-              <DropdownItem to="/">Wall Art Digital Painting</DropdownItem>
+              <DropdownItem to="/product/17654678">Digital Oil Painting</DropdownItem>
+              <DropdownItem to="/product/4876567">Digital Sketch</DropdownItem>
+              <DropdownItem to="/product/68765678">Wall Art Digital Painting</DropdownItem>
             </DropdownMenu>
           </MenuItem>
           <MenuItem
@@ -171,10 +171,8 @@ const Navbar1 = () => {
             <span>Photo Services</span>
             {openDropdown === 'photoServices' ? <KeyboardArrowUpOutlined /> : <KeyboardArrowDownOutlined />}
             <DropdownMenu open={openDropdown === 'photoServices'}>
-              <DropdownItem to="/">Image Manipulation</DropdownItem>
-              <DropdownItem to="/">Damage Photo Restoration</DropdownItem>
-              <DropdownItem to="/">B&W to Color Photo</DropdownItem>
-              <DropdownItem to="/">Photo Collage</DropdownItem>
+              <DropdownItem to="/product/5655567">Damage Photo Restoration</DropdownItem>
+              <DropdownItem to="/product/27655678">Photo Collage</DropdownItem>
             </DropdownMenu>
           </MenuItem>
           <MenuItem
@@ -184,10 +182,10 @@ const Navbar1 = () => {
             <span>Custom Gifts</span>
             {openDropdown === 'customGifts' ? <KeyboardArrowUpOutlined /> : <KeyboardArrowDownOutlined />}
             <DropdownMenu open={openDropdown === 'customGifts'}>
-              <DropdownItem to="/">Video Invitation</DropdownItem>
-              <DropdownItem to="/">Trendy Invitation Card</DropdownItem>
-              <DropdownItem to="/">Caricature Art</DropdownItem>
-              <DropdownItem to="/">Mosaic Art</DropdownItem>
+              <DropdownItem to="/product/387656">Video Invitation</DropdownItem>
+              <DropdownItem to="/product/27655678">Trendy Invitation Card</DropdownItem>
+              {/* <DropdownItem to="/">Caricature Art</DropdownItem> */}
+              {/* <DropdownItem to="/">Mosaic Art</DropdownItem> */}
             </DropdownMenu>
           </MenuItem>
         </Center>
