@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -14,7 +15,7 @@ const Image = styled.img`
 `;
 
 const Video = styled.video`
-   width: 100%;
+  width: 100%;
   height: 100%;
   object-fit: cover;
 `;
@@ -46,9 +47,15 @@ const Button = styled.button`
 `;
 
 const CategoriesItem = ({ item }) => {
+  const navigate = useNavigate();
+
+  const handleOrderNowClick = () => {
+    navigate(`/product/${item.id}`); // Redirects to the service page with the item's ID
+  };
+
   return (
     <Container>
-      {item.id === 3 ? (
+      {item.id === 387656 ? (
         <Video autoPlay loop muted>
           <source src="../image/v2.mp4" type="video/mp4" />
           Your browser does not support the video tag.
@@ -58,7 +65,7 @@ const CategoriesItem = ({ item }) => {
       )}
       <Info>
         <Title>{item.title}</Title>
-        <Button>Order NOW</Button>
+        <Button onClick={handleOrderNowClick}>Order NOW</Button>
       </Info>
     </Container>
   );

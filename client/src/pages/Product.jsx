@@ -5,28 +5,65 @@ import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
 import Navbar1 from "../components/Navbar1";
-import Newsletter from "../components/Newsletter";
-import { publicRequest } from "../requestMethods";
 import { addProduct } from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
+import { products } from "../data";
+import { Help } from "../components/Help";
 
 const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 50px;
   display: flex;
-  margin-top:6%;
+  margin-top: 6%;
 `;
 const ImageContainer = styled.div`
   flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-direction: column; // Change to column layout to place dots below
 `;
 const Image = styled.img`
-  width: 100%;
-  height: 90vh;
+  width: 60%;
+  height: 70vh;
   object-fit: cover;
+  border-radius: 10px;
+  transition: opacity 0.5s ease-in-out;
 `;
+const Arrow = styled.div`
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  ${(props) => (props.direction === "left" ? "left: 110px" : "right: 110px")};
+  cursor: pointer;
+  color: white;
+  z-index: 2;
+`;
+
+// Dots container and dot styling
+const DotsContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+`;
+const Dot = styled.div`
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: ${(props) => (props.active ? "teal" : "lightgray")};
+  margin: 0 5px;
+  cursor: pointer;
+`;
+
 const InfoContainer = styled.div`
   flex: 1;
-  padding: 0px 50px;
 `;
 const Title = styled.h1`
   font-weight: 200;
@@ -52,14 +89,6 @@ const FilterTitle = styled.span`
   font-size: 20px;
   font-weight: 200;
 `;
-const FilterColor = styled.div`
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: ${(props) => props.color};
-  margin: 0px 5px;
-  cursor: pointer;
-`;
 const FilterSize = styled.select`
   margin-left: 10px;
   padding: 5px;
@@ -67,7 +96,6 @@ const FilterSize = styled.select`
 const FilterSizeOption = styled.option``;
 const AddContainer = styled.div`
   width: 50%;
-  /* display: flex; */
   align-items: center;
   justify-content: space-between;
 `;
@@ -75,6 +103,7 @@ const AmountContainer = styled.div`
   display: flex;
   align-items: center;
   font-weight: 700;
+  margin-bottom: 20px;
 `;
 const Amount = styled.span`
   width: 30px;
@@ -92,27 +121,29 @@ const Button = styled.button`
   background-color: white;
   cursor: pointer;
   font-weight: 500;
+  margin-right: 10px;
 `;
 
 const Product = () => {
   const location = useLocation();
   const id = location.pathname.split("/")[2];
-  const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState();
   const [size, setSize] = useState();
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const dispatch = useDispatch();
 
+  const product = products.find((item) => item.id === id);
+
   useEffect(() => {
-    const getProduct = async () => {
-      try {
-        const res = await publicRequest.get("/products/find/" + id);
-        console.log(res);
-        setProduct(res.data);
-      } catch {}
-    };
-    getProduct();
-  }, [id]);
+    window.scrollTo(0, 0);
+  }, []);
+
+  const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
+const handleSizeChange = (size) => {
+  const newSize = product.sizes.find((s) => s.size === size);
+  setSelectedSize(newSize);
+};
 
   const handleQuantity = (type) => {
     if (type === "dec") {
@@ -123,8 +154,15 @@ const Product = () => {
   };
 
   const handleClick = () => {
-    // update cart
     dispatch(addProduct({ ...product, quantity, color, size }));
+  };
+
+  const handleImageChange = (direction) => {
+    if (direction === "left") {
+      setCurrentImageIndex((currentImageIndex - 1 + product.images.length) % product.images.length);
+    } else {
+      setCurrentImageIndex((currentImageIndex + 1) % product.images.length);
+    }
   };
 
   return (
@@ -133,46 +171,59 @@ const Product = () => {
       <Navbar1 />
       <Wrapper>
         <ImageContainer>
-          {/* <Image src={product.img} /> */}
-          <Image src="../image/product1.jpg"/>
+          <Arrow direction="left" onClick={() => handleImageChange("left")}>
+            &#10094;
+          </Arrow>
+          <Image src={product.images[currentImageIndex]} alt={product.title} />
+          <Arrow direction="right" onClick={() => handleImageChange("right")}>
+            &#10095;
+          </Arrow>
+          {/* Dots for each image below the image */}
+          <DotsContainer>
+            {product.images.map((_, index) => (
+              <Dot
+                key={index}
+                active={index === currentImageIndex}
+                onClick={() => setCurrentImageIndex(index)}
+              />
+            ))}
+          </DotsContainer>
         </ImageContainer>
         <InfoContainer>
-          {/* <Title>{product.title}</Title> */}
-          <Title>Digi Painting</Title>
+          <Title>{product.title}</Title>
           <Desc>{product.desc}</Desc>
-          {/* <Desc>Get your photos beautifully hand-drawn using graphic pad & stylus pen. Previewed, framed & home delivered; Sunlight & water-resistant pigment ink is used for lifetime durability.</Desc> */}
-          <Price>₹ {product.price}</Price>
-          {/* <Price>₹ 700</Price> */}
+          {/* <Price>₹ {product.price}</Price> */}
+          <Price>₹ {selectedSize.price}</Price>
 
           <FilterContainer>
-            {/* <Filter>
-              <FilterTitle>Color</FilterTitle>
-              {product.color?.map((c) => (
-                <FilterColor color={c} key={c} onClick={() => setColor(c)} />
-              ))}
-            </Filter> */}
             <Filter>
               <FilterTitle>Select Frame Size</FilterTitle>
-              <FilterSize onChange={(e) => setSize(e.target.value)}>
+              {/* <FilterSize onChange={(e) => setSize(e.target.value)}>
                 {product.size?.map((s) => (
                   <FilterSizeOption key={s}>{s}</FilterSizeOption>
-                  // <FilterSizeOption key={s}>A4 (9 x 13 in)</FilterSizeOption>
                 ))}
+              </FilterSize> */}
+              <FilterSize onChange={(e) => handleSizeChange(e.target.value)}>
+                 {product.sizes.map((s) => (
+                <FilterSizeOption key={s.size} value={s.size}>
+                  {s.size}
+                </FilterSizeOption>
+                 ))}
               </FilterSize>
             </Filter>
           </FilterContainer>
           <AddContainer>
-            <AmountContainer>
+            {/* <AmountContainer>
               <Remove onClick={() => handleQuantity("dec")} />
               <Amount>{quantity}</Amount>
               <Add onClick={() => handleQuantity("inc")} />
-            </AmountContainer>
+            </AmountContainer> */}
             <Button onClick={handleClick}>ADD TO CART</Button>
-            <Button>Buy Now</Button>
+            <Button>Order Now</Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>
-      <Newsletter />
+      <Help />
       <Footer />
     </Container>
   );
