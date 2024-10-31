@@ -74,7 +74,7 @@ const Detail = styled.div`
 `;
 
 const ProductName = styled.span``;
-const ProductId = styled.span``;
+// const ProductId = styled.span``;
 
 const ProductColor = styled.div`
   width: 20px;
@@ -167,17 +167,17 @@ const Cart = () => {
             {cart.products.map((product) => (
               <Product key={product._id}>
                 <ProductDetail>
-                  <Image src={product.img} />
+                  <Image src={product.images[0]} />
                   <Detail>
                     <ProductName>
                       <b>Product:</b> {product.title}
                     </ProductName>
-                    <ProductId>
+                    {/* <ProductId>
                       <b>ID:</b> {product._id}
-                    </ProductId>
+                    </ProductId> */}
                     <ProductColor color={product.color} />
                     <ProductSize>
-                      <b>Size:</b> {product.size}
+                      <b>Size:</b> {product.size} {console.log(product)}
                     </ProductSize>
                   </Detail>
                 </ProductDetail>

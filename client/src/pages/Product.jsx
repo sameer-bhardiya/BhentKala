@@ -154,7 +154,12 @@ const handleSizeChange = (size) => {
   };
 
   const handleClick = () => {
-    dispatch(addProduct({ ...product, quantity, color, size }));
+    dispatch(addProduct({
+      ...product,
+      quantity,
+      size: selectedSize.size,
+      price: selectedSize.price,
+    }));
   };
 
   const handleImageChange = (direction) => {
