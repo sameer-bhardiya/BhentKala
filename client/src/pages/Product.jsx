@@ -1,6 +1,7 @@
-import { Add, Remove } from "@mui/icons-material";
+// import { Add, Remove } from "@mui/icons-material";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
@@ -126,6 +127,7 @@ const Button = styled.button`
 
 const Product = () => {
   const location = useLocation();
+  const navigate = useNavigate(); // Initialize useNavigate
   const id = location.pathname.split("/")[2];
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState();
@@ -140,10 +142,10 @@ const Product = () => {
   }, []);
 
   const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
-const handleSizeChange = (size) => {
-  const newSize = product.sizes.find((s) => s.size === size);
-  setSelectedSize(newSize);
-};
+  const handleSizeChange = (size) => {
+    const newSize = product.sizes.find((s) => s.size === size);
+    setSelectedSize(newSize);
+  };
 
   const handleQuantity = (type) => {
     if (type === "dec") {
@@ -153,13 +155,37 @@ const handleSizeChange = (size) => {
     }
   };
 
-  const handleClick = () => {
-    dispatch(addProduct({
-      ...product,
-      quantity,
-      size: selectedSize.size,
-      price: selectedSize.price,
-    }));
+  const handleAddToCart = () => {
+    dispatch(
+      addProduct({
+        ...product,
+        quantity,
+        size: selectedSize.size,
+        price: selectedSize.price,
+      })
+    );
+  };
+
+  const handleOrderNow = () => {
+    // Dispatch the order details
+    dispatch(
+      addProduct({
+        ...product,
+        quantity,
+        size: selectedSize.size,
+        price: selectedSize.price,
+      })
+    );
+
+    // Redirect to checkout page
+    navigate("/checkout", {
+      state: {
+        product,
+        quantity,
+        size: selectedSize.size,
+        price: selectedSize.price,
+      },
+    });
   };
 
   const handleImageChange = (direction) => {
@@ -183,7 +209,6 @@ const handleSizeChange = (size) => {
           <Arrow direction="right" onClick={() => handleImageChange("right")}>
             &#10095;
           </Arrow>
-          {/* Dots for each image below the image */}
           <DotsContainer>
             {product.images.map((_, index) => (
               <Dot
@@ -197,34 +222,23 @@ const handleSizeChange = (size) => {
         <InfoContainer>
           <Title>{product.title}</Title>
           <Desc>{product.desc}</Desc>
-          {/* <Price>₹ {product.price}</Price> */}
           <Price>₹ {selectedSize.price}</Price>
 
           <FilterContainer>
             <Filter>
               <FilterTitle>Select Frame Size</FilterTitle>
-              {/* <FilterSize onChange={(e) => setSize(e.target.value)}>
-                {product.size?.map((s) => (
-                  <FilterSizeOption key={s}>{s}</FilterSizeOption>
-                ))}
-              </FilterSize> */}
               <FilterSize onChange={(e) => handleSizeChange(e.target.value)}>
-                 {product.sizes.map((s) => (
-                <FilterSizeOption key={s.size} value={s.size}>
-                  {s.size}
-                </FilterSizeOption>
-                 ))}
+                {product.sizes.map((s) => (
+                  <FilterSizeOption key={s.size} value={s.size}>
+                    {s.size}
+                  </FilterSizeOption>
+                ))}
               </FilterSize>
             </Filter>
           </FilterContainer>
           <AddContainer>
-            {/* <AmountContainer>
-              <Remove onClick={() => handleQuantity("dec")} />
-              <Amount>{quantity}</Amount>
-              <Add onClick={() => handleQuantity("inc")} />
-            </AmountContainer> */}
-            <Button onClick={handleClick}>ADD TO CART</Button>
-            <Button>Order Now</Button>
+            <Button onClick={handleAddToCart}>ADD TO CART</Button>
+            <Button onClick={handleOrderNow}>Order Now</Button> {/* Add the onClick handler */}
           </AddContainer>
         </InfoContainer>
       </Wrapper>

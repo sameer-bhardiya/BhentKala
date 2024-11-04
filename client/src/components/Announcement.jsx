@@ -13,6 +13,11 @@ const Container = styled.div`
     z-index: 1001;
     position: fixed;
     top:0;
+
+    @media (max-width: 488px) {
+    position:absolute;
+    /* height: 90px; */
+  }
 `
 
 const Announcement = () => {

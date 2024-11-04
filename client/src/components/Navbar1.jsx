@@ -1,4 +1,4 @@
-import { KeyboardArrowDownOutlined, KeyboardArrowUpOutlined, ShoppingCartOutlined,Search } from '@mui/icons-material';
+import { KeyboardArrowDownOutlined, KeyboardArrowUpOutlined, ShoppingCartOutlined,Search,Menu as MenuIcon, Close as CloseIcon } from '@mui/icons-material';
 import { Badge } from '@mui/material';
 import React, { useState } from 'react';
 import styled from 'styled-components';
@@ -16,6 +16,11 @@ const Containers = styled.div`
   ${mobile({
     height: "50px"
   })};
+   @media (max-width: 488px) {
+    position:absolute;
+    height: 60px;
+    top: 90;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -24,8 +29,8 @@ const Wrapper = styled.div`
   align-items:center;
   justify-content:space-between;
   @media (max-width: 488px) {
-    padding:"10px 0px";
-    /* display:none; */
+    padding: 10px 0;
+    top:99px;
   }
 `;
 
@@ -42,6 +47,9 @@ const SearchContainer = styled.div`
     margin-left:25px;
     padding: 5px 13px ;
     border-radius:50px;
+    @media (max-width: 488px) {
+    display: none; /* Hide the menu items on mobile */
+  }
   `;
 
 const Input = styled.input`
@@ -58,7 +66,9 @@ const Logo = styled.div`
     background:black;
     border-radius:5px;
     @media (max-width: 488px) {
-      height: 30px; /* Adjust the height for mobile */
+      /* display: none; */
+      height: 50px;
+      margin-left:10px;
     }
   }
 `;
@@ -68,7 +78,9 @@ const Center = styled.div`
   display: flex;
   justify-content: flex-end;
   @media (max-width: 488px) {
-    flex: 2; justify-content: "center"; margin-right: "10px"
+    /* flex: 2; justify-content: "center"; margin-right: "10px" */
+
+    display: none; /* Hide the menu items on mobile */
   };
 `;
 
@@ -114,12 +126,58 @@ const Right = styled.div`
   flex: 1;
   display: flex;
   justify-content: flex-end;
-  @media (max-width: 488px) {
+  /* @media (max-width: 488px) {
     flex: 2; justify-content:"center"; margin-right: "10px";
-  };
+  }; */
+  @media (max-width: 488px) {
+    display: none; /* Hide the menu items on mobile */
+  }
+`;
+
+const HamburgerMenu = styled.div`
+  display: none;
+  margin-right: 10px;
+
+  svg{
+    font-size: 36px;
+  }
+  @media (max-width: 488px) {
+    display: block;
+    cursor: pointer;
+  }
+`;
+
+const MobileMenu = styled.div`
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 1000;
+  display: ${(props) => (props.open ? "flex" : "none")};
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 20px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  @media (min-width: 489px) {
+    display: none;
+  }
+`;
+
+const MobileMenuItem = styled.div`
+  margin: 10px 0;
+  font-size: 18px;
+  cursor: pointer;
+  &:hover {
+    font-weight: bold;
+    color: #bf4625;
+  }
 `;
 
 const Navbar1 = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
   const quantity = useSelector(state => state.cart.quantity);
   const user = useSelector(state => state.user.currentUser);
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -136,6 +194,10 @@ const Navbar1 = () => {
   const handleMouseLeave = () => {
     setOpenDropdown(null);
   }
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   return (
     <Containers>
@@ -209,7 +271,38 @@ const Navbar1 = () => {
             </MenuItem>
           </Link>
         </Right>
+        <HamburgerMenu onClick={toggleMenu}>
+          {menuOpen ? <CloseIcon /> : <MenuIcon />}
+        </HamburgerMenu>
       </Wrapper>
+
+      {/* Mobile Dropdown Menu */}
+      <MobileMenu open={menuOpen}>
+        <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>
+          <MobileMenuItem onClick={toggleMenu}>Menu</MobileMenuItem>
+        </Link>
+        <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>
+          <MobileMenuItem onClick={toggleMenu}>Digital Oil Painting</MobileMenuItem>
+        </Link>
+        <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>
+          <MobileMenuItem onClick={toggleMenu}>Wall Art Digital Painting</MobileMenuItem>
+        </Link>
+        <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>
+          <MobileMenuItem onClick={toggleMenu}>Damage Photo Restoration</MobileMenuItem>
+        </Link>
+        <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>
+          <MobileMenuItem onClick={toggleMenu}>Trendy Invitation Card</MobileMenuItem>
+        </Link>
+        {/* <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>
+          <MobileMenuItem onClick={toggleMenu}>गैलरी</MobileMenuItem>
+        </Link> */}
+        <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>
+          <MobileMenuItem onClick={toggleMenu}>Log in</MobileMenuItem>
+        </Link>
+        {/* <Link to="/register" style={{ textDecoration: 'none', color: 'black' }}>
+          <MobileMenuItem onClick={toggleMenu}>रजिस्टर करे</MobileMenuItem>
+        </Link> */}
+      </MobileMenu>
     </Containers>
   )
 }
