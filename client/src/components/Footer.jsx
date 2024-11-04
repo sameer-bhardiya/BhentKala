@@ -14,6 +14,10 @@ flex:1;
 display:flex;
 flex-direction: column;
 padding:20px;
+
+@media (max-width: 488px) {
+    display: none; /* Hide the menu items on mobile */
+  }
 `;
 
 // const Logo = styled.h1`
