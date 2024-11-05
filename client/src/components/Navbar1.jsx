@@ -255,6 +255,9 @@ const Navbar1 = () => {
           <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>
             <MenuItem>Home</MenuItem>
           </Link>
+          <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>
+            <MenuItem>Gallery</MenuItem>
+          </Link>
           {user ? null : <Link to="/login" style={{ textDecoration: 'none', color: 'black' }}>
             <MenuItem>Login</MenuItem>
           </Link>}
