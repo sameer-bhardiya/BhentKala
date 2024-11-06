@@ -6,6 +6,7 @@ import Product from "./pages/Product";
 import Checkout from "./pages/Checkout";
 import { ProductList } from "./pages/ProductList";
 import Register from "./pages/Register";
+import Gallery from "./pages/Gallery";
 import {
   BrowserRouter as Router,
   Routes,
@@ -21,6 +22,7 @@ const App = () => {
         <Route exact path="/" element={<Home />} />
         <Route path="/products/:category" element={<ProductList />} />
         <Route path="/product/:id" element={<Product />} />
+        <Route path="/gallery" element={<Gallery />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout/>} />
         <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />

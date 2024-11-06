@@ -255,7 +255,7 @@ const Navbar1 = () => {
           <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>
             <MenuItem>Home</MenuItem>
           </Link>
-          <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>
+          <Link to="/gallery" style={{ textDecoration: 'none', color: 'black' }}>
             <MenuItem>Gallery</MenuItem>
           </Link>
           {user ? null : <Link to="/login" style={{ textDecoration: 'none', color: 'black' }}>
@@ -295,6 +295,9 @@ const Navbar1 = () => {
         </Link>
         <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>
           <MobileMenuItem onClick={toggleMenu}>Trendy Invitation Card</MobileMenuItem>
+        </Link>
+        <Link to="/gallery" style={{ textDecoration: 'none', color: 'black' }}>
+          <MobileMenuItem onClick={toggleMenu}>Gallery</MobileMenuItem>
         </Link>
         {/* <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>
           <MobileMenuItem onClick={toggleMenu}>गैलरी</MobileMenuItem>
