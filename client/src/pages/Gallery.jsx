@@ -59,13 +59,24 @@ const Quote = styled.p`
 
 
 const Gallery = () => {
-  // Load Instagram Embed JS after the component mounts
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = "//www.instagram.com/embed.js";
-    document.body.appendChild(script);
-  }, []);
+    // Load Instagram Embed JS after the component mounts
+    useEffect(() => {
+      // Dynamically load the Instagram Embed script
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = "//www.instagram.com/embed.js";
+      document.body.appendChild(script);
+
+      // Re-initialize the embeds after the script loads
+      script.onload = () => {
+        window.instgrm.Embeds.process();
+      };
+
+      return () => {
+        // Clean up the script if necessary when the component unmounts
+        document.body.removeChild(script);
+      };
+    }, []); // Empty dependency array ensures this only runs once after initial mount
 
   return (
     <Container>
