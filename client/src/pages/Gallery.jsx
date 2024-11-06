@@ -12,6 +12,11 @@ const Container = styled.div`
 
 const Title = styled.div`
   margin-top: 10%;
+  text-align:center;
+
+  @media (max-width: 488px) {
+    margin-top:25%;
+  }
 `;
 
 const Wrapper = styled.div`
