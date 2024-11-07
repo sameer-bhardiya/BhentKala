@@ -150,7 +150,7 @@ const HamburgerMenu = styled.div`
 
 const MobileMenu = styled.div`
   position: absolute;
-  top: 50px;
+  top: 60px;
   left: 0;
   width: 100%;
   background-color: white;
@@ -159,7 +159,7 @@ const MobileMenu = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  padding: 20px 0;
+  padding: 4px 0;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
   @media (min-width: 489px) {

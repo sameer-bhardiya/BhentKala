@@ -18,9 +18,7 @@ const Description = styled.div`
 font-size:24px;
 font-weight:300;
 margin-bottom:20px;
-${mobile({
-        textAlign:"center"
-    })}
+text-align: center;
 `;
 const InputContainer = styled.div`
 width:50%;
