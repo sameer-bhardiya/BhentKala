@@ -13,9 +13,7 @@ const Containers = styled.div`
   width: 100%;
   background-color: white;
   z-index: 1000;
-  ${mobile({
-    height: "50px"
-  })};
+
    @media (max-width: 488px) {
     position:absolute;
     height: 60px;
