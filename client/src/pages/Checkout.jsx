@@ -6,11 +6,12 @@ import ShippingAddress from "../components/Checkout/ShippingAddress";
 import PaymentMethod from "../components/Checkout/PaymentMethod";
 import OrderSummary from "../components/Checkout/OrderSummary";
 import { useState } from "react";
+import UploadPicture from "../components/Checkout/UploadPicture";
 
 const Container = styled.div``;
 
 const Heading = styled.h1`
-  margin: 10% 0 5% 0;
+  margin: 8% 0 3% 0;
   text-align: center;
 `;
 
@@ -37,7 +38,7 @@ const TabHeading = styled.h2`
 `;
 
 const TabContent = styled.div`
-  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+  display: ${({ isOpen }) => (isOpen ? "block" : "none")};
   margin-top: 20px;
 `;
 
@@ -56,9 +57,10 @@ const Button = styled.button`
 `;
 
 const Checkout = () => {
-  const [activeTab, setActiveTab] = useState(0); // To control which tab is open (0 = Delivery Address, 1 = Order Summary, 2 = Payment Method)
+  const [activeTab, setActiveTab] = useState(0); // To control which tab is open (0 = Delivery Address, 1 = Order Summary, 2 = Payment Method, 3 = Upload Picture)
   const [address, setAddress] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState(null);
+  const [uploadedPicture, setUploadedPicture] = useState(null);
 
   const location = useLocation();
   const { product, quantity, size, price } = location.state;
@@ -73,6 +75,11 @@ const Checkout = () => {
     setActiveTab(3); // Move to next tab after payment method is saved
   };
 
+  const handlePictureUpload = (file) => {
+    setUploadedPicture(file);
+    setActiveTab(3); // Directly move to the Payment Method tab after picture upload
+  };
+
   return (
     <Container>
       <Announcement />
@@ -83,29 +90,38 @@ const Checkout = () => {
         {/* Delivery Address Tab */}
         <Tab onClick={() => setActiveTab(0)}>
           <TabHeading>Delivery Address</TabHeading>
-          <span>{activeTab === 0 ? '-' : '+'}</span>
+          <span>{activeTab === 0 ? "-" : "+"}</span>
         </Tab>
         <TabContent isOpen={activeTab === 0}>
           <ShippingAddress onSaveAddress={handleAddressSave} />
         </TabContent>
 
-        {/* Order Summary Tab (always visible, opens after Delivery Address is submitted) */}
+        {/* Order Summary Tab */}
         <Tab onClick={() => setActiveTab(1)}>
           <TabHeading>Order Summary</TabHeading>
-          <span>{activeTab === 1 ? '-' : '+'}</span>
+          <span>{activeTab === 1 ? "-" : "+"}</span>
         </Tab>
         <TabContent isOpen={activeTab === 1}>
-          <OrderSummary product={product} total={price} size ={size} />
-
-          <Button onClick={() => setActiveTab(2)}>Continue to Payment</Button>
+          <OrderSummary product={product} total={price} size={size} />
+          <Button onClick={() => setActiveTab(2)}>Upload your photo</Button>
         </TabContent>
 
-        {/* Payment Method Tab (always visible, opens after Order Summary is submitted) */}
+        {/* Upload Picture Tab */}
         <Tab onClick={() => setActiveTab(2)}>
-          <TabHeading>Payment Method</TabHeading>
-          <span>{activeTab === 2 ? '-' : '+'}</span>
+          <TabHeading>Upload Your Picture</TabHeading>
+          <span>{activeTab === 2 ? "-" : "+"}</span>
         </Tab>
         <TabContent isOpen={activeTab === 2}>
+          <UploadPicture onUpload={handlePictureUpload} />
+          {uploadedPicture && <p>Uploaded File: {uploadedPicture.name}</p>}
+        </TabContent>
+
+        {/* Payment Method Tab */}
+        <Tab onClick={() => setActiveTab(3)}>
+          <TabHeading>Payment Method</TabHeading>
+          <span>{activeTab === 3 ? "-" : "+"}</span>
+        </Tab>
+        <TabContent isOpen={activeTab === 3}>
           <PaymentMethod onSavePaymentMethod={handlePaymentSave} />
         </TabContent>
       </Wrapper>

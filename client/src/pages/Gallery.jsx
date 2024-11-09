@@ -11,7 +11,7 @@ const Container = styled.div`
 `;
 
 const Title = styled.div`
-  margin-top: 10%;
+  margin-top: 8%;
   text-align:center;
 
   @media (max-width: 488px) {
