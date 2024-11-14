@@ -1,4 +1,4 @@
-import { KeyboardArrowDownOutlined, KeyboardArrowUpOutlined, ShoppingCartOutlined,Search,Menu as MenuIcon, Close as CloseIcon, AccountCircleRounded } from '@mui/icons-material';
+import { KeyboardArrowDownOutlined, KeyboardArrowUpOutlined, ShoppingCartOutlined,Search,Menu as MenuIcon, Close as CloseIcon } from '@mui/icons-material';
 import { Badge } from '@mui/material';
 import React, { useState } from 'react';
 import styled from 'styled-components';
@@ -260,38 +260,11 @@ const Navbar1 = () => {
           {user ? null : <Link to="/login" style={{ textDecoration: 'none', color: 'black' }}>
             <MenuItem>Login</MenuItem>
           </Link>}
-          {/* {user ? <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>
+          {user ? <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>
             <MenuItem onClick={LogOut}>Log Out</MenuItem>
           </Link> : <Link to="/Register" style={{ textDecoration: 'none', color: 'black' }}>
             <MenuItem>Sign Up</MenuItem>
-          </Link>} */}
-          {user ?
-
-          <MenuItem
-          onMouseEnter={() => handleMouseEnter('account')}
-          onMouseLeave={handleMouseLeave}
-        >
-          <span> <AccountCircleRounded/> </span>
-          {/* {openDropdown === 'account' ? <KeyboardArrowUpOutlined /> : <KeyboardArrowDownOutlined />} */}
-          <DropdownMenu open={openDropdown === 'account'} style={{left:-107}}>
-            <DropdownItem to="/" style={{ textDecoration: 'none', color: 'black' }}>
-            <MenuItem onClick={LogOut}>Log Out</MenuItem>
-            </DropdownItem>
-            <DropdownItem to="/" style={{ textDecoration: 'none', color: 'black' }}>
-            <MenuItem >Account</MenuItem>
-            </DropdownItem>
-          </DropdownMenu>
-        </MenuItem>
-
-          :
-
-          <Link to="/Register" style={{ textDecoration: 'none', color: 'black' }}>
-            <MenuItem>Sign Up</MenuItem>
-          </Link>
-
-          }
-
-
+          </Link>}
           <Link to="/cart">
             <MenuItem>
               <Badge badgeContent={quantity} color="primary">

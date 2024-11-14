@@ -7,7 +7,6 @@ import PaymentMethod from "../components/Checkout/PaymentMethod";
 import OrderSummary from "../components/Checkout/OrderSummary";
 import { useState } from "react";
 import UploadPicture from "../components/Checkout/UploadPicture";
-import axios from "axios";
 
 const Container = styled.div``;
 
@@ -73,65 +72,12 @@ const Checkout = () => {
 
   const handlePaymentSave = (method) => {
     setPaymentMethod(method);
-    if (method === "Razorpay") {
-      handleRazorpayPayment(); // Trigger Razorpay payment flow if Razorpay is selected
-    } else {
-      setActiveTab(3); // Move to next tab after payment method is saved
-    }
+    setActiveTab(3); // Move to next tab after payment method is saved
   };
 
   const handlePictureUpload = (file) => {
     setUploadedPicture(file);
-    setActiveTab(3); // Move to the Payment Method tab after picture upload
-  };
-
-  // Razorpay payment handler
-  const handleRazorpayPayment = async () => {
-    try {
-      // Create an order in your backend
-      const { data: order } = await axios.post("/api/payment/create-order", {
-        amount: price * 100, // Amount is in paise (1 INR = 100 paise)
-      });
-
-      // Open Razorpay checkout window
-      const options = {
-        key: process.env.REACT_APP_RAZORPAY_KEY_ID, // Add your Razorpay Key ID
-        amount: order.amount,
-        currency: "INR",
-        name: "Your Company Name",
-        description: "Test Transaction",
-        order_id: order.id,
-        handler: async function (response) {
-          const { razorpay_payment_id, razorpay_order_id, razorpay_signature } = response;
-
-          // Verify payment in backend
-          const verifyRes = await axios.post("/api/payment/verify-payment", {
-            razorpay_payment_id,
-            razorpay_order_id,
-            razorpay_signature,
-          });
-
-          if (verifyRes.data.message === "Payment verification successful") {
-            alert("Payment successful!");
-          } else {
-            alert("Payment verification failed. Please try again.");
-          }
-        },
-        prefill: {
-          name: "Your Name",
-          email: "youremail@example.com",
-          contact: "9999999999",
-        },
-        theme: {
-          color: "#3399cc",
-        },
-      };
-
-      const rzp = new window.Razorpay(options);
-      rzp.open();
-    } catch (error) {
-      console.error("Error in Razorpay payment process:", error);
-    }
+    setActiveTab(3); // Directly move to the Payment Method tab after picture upload
   };
 
   return (

@@ -2,8 +2,6 @@ import React, { useEffect } from 'react';
 import Announcement from '../components/Announcement';
 import Navbar1 from '../components/Navbar1';
 import styled from 'styled-components';
-import {Fade} from "react-reveal";
-
 
 // Styled-components for the gallery layout
 const Container = styled.div`
@@ -89,7 +87,6 @@ const Gallery = () => {
       <Quote>"We create memories, and here they are captured forever."</Quote>
       </Title>
       <Wrapper>
-      <Fade>
         <EmbedContainer>
           <blockquote
             className="instagram-media"
@@ -100,9 +97,7 @@ const Gallery = () => {
             <a href="https://www.instagram.com/p/CmBBYBRJGG6/?utm_source=ig_embed&utm_campaign=loading"></a>
           </blockquote>
         </EmbedContainer>
-        </Fade>
 
-        <Fade>
         <EmbedContainer>
           <blockquote
             className="instagram-media"
@@ -113,20 +108,17 @@ const Gallery = () => {
             <a href="https://www.instagram.com/p/CjIKKZnpD0T/?utm_source=ig_embed&amp;utm_campaign=loading"></a>
           </blockquote>
         </EmbedContainer>
-        </Fade>
 
-      <Fade>
         <EmbedContainer>
           <blockquote
             className="instagram-media"
             data-instgrm-captioned
             data-instgrm-permalink="https://www.instagram.com/p/C1J0daItEdr/?utm_source=ig_embed&amp;utm_campaign=loading"
             data-instgrm-version="14"
-            >
+          >
             <a href="https://www.instagram.com/p/C1J0daItEdr/?utm_source=ig_embed&amp;utm_campaign=loading"></a>
           </blockquote>
         </EmbedContainer>
-          </Fade>
 
         <EmbedContainer>
           <blockquote
@@ -139,83 +131,71 @@ const Gallery = () => {
           </blockquote>
         </EmbedContainer>
 
-        <Fade>
         <EmbedContainer>
           <blockquote
             className="instagram-media"
             data-instgrm-captioned
             data-instgrm-permalink="https://www.instagram.com/p/CuYqlV8JDyA/?utm_source=ig_embed&amp;utm_campaign=loading"
             data-instgrm-version="14"
-            >
+          >
             <a href="https://www.instagram.com/p/CuYqlV8JDyA/?utm_source=ig_embed&amp;utm_campaign=loading"></a>
           </blockquote>
         </EmbedContainer>
-          </Fade>
 
-        <Fade>
         <EmbedContainer>
           <blockquote
             className="instagram-media"
             data-instgrm-captioned
             data-instgrm-permalink="https://www.instagram.com/p/Cx5SKeVJMoL/?utm_source=ig_embed&amp;utm_campaign=loading"
             data-instgrm-version="14"
-            >
+          >
             <a href="https://www.instagram.com/p/Cx5SKeVJMoL/?utm_source=ig_embed&amp;utm_campaign=loading"></a>
           </blockquote>
         </EmbedContainer>
-        </Fade>
 
-        <Fade>
         <EmbedContainer>
           <blockquote
             className="instagram-media"
             data-instgrm-captioned
             data-instgrm-permalink="https://www.instagram.com/p/CyGRlAWpeXg/?utm_source=ig_embed&amp;utm_campaign=loading"
             data-instgrm-version="14"
-            >
+          >
             <a href="https://www.instagram.com/p/CyGRlAWpeXg/?utm_source=ig_embed&amp;utm_campaign=loading"></a>
           </blockquote>
         </EmbedContainer>
-          </Fade>
 
-        <Fade>
         <EmbedContainer>
           <blockquote
             className="instagram-media"
             data-instgrm-captioned
             data-instgrm-permalink="https://www.instagram.com/p/Cx0JsNmJqyH/?utm_source=ig_embed&amp;utm_campaign=loading"
             data-instgrm-version="14"
-            >
+          >
             <a href="https://www.instagram.com/p/Cx0JsNmJqyH/?utm_source=ig_embed&amp;utm_campaign=loading"></a>
           </blockquote>
         </EmbedContainer>
-          </Fade>
 
-        <Fade>
         <EmbedContainer>
           <blockquote
             className="instagram-media"
             data-instgrm-captioned
             data-instgrm-permalink="https://www.instagram.com/p/Cu3g1I6Jk4h/?utm_source=ig_embed&amp;utm_campaign=loading"
             data-instgrm-version="14"
-            >
+          >
             <a href="https://www.instagram.com/p/Cu3g1I6Jk4h/?utm_source=ig_embed&amp;utm_campaign=loading"></a>
           </blockquote>
         </EmbedContainer>
-        </Fade>
 
-        <Fade>
         <EmbedContainer>
           <blockquote
             className="instagram-media"
             data-instgrm-captioned
             data-instgrm-permalink="https://www.instagram.com/p/Cu8p4xWpW3-/?utm_source=ig_embed&amp;utm_campaign=loading"
             data-instgrm-version="14"
-            >
+          >
             <a href="https://www.instagram.com/p/Cu8p4xWpW3-/?utm_source=ig_embed&amp;utm_campaign=loading"></a>
           </blockquote>
         </EmbedContainer>
-          </Fade>
         {/* Add more Instagram embeds here */}
       </Wrapper>
     </Container>
