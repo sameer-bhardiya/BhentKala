@@ -1,7 +1,7 @@
 import { categories } from "../data"
 import styled from "styled-components"
 import CategoriesItem from "./CategoriesItem"
-import {Fade} from "react-reveal";
+import { mobile } from "../responsive"
 
 
 const Container = styled.div`
@@ -30,13 +30,11 @@ const Categories = () => {
   return (
     <div>
          <Title>Our Services</Title>
-         <Fade>
          <Container>
          {categories.map(item=>(
            <CategoriesItem item={item} key={item.id}/>
           ))}
          </Container>
-         </Fade>
     </div>
   )
 }
