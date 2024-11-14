@@ -62,7 +62,50 @@ const PaymentMethod = ({ onSavePaymentMethod }) => {
   };
 
   const handleSubmit = () => {
-    onSavePaymentMethod(paymentMethod);
+    if (paymentMethod === 'razorpay') {
+      initiateRazorpayPayment();
+    } else {
+      onSavePaymentMethod(paymentMethod); // Save other payment methods like credit card, net banking, etc.
+    }
+  };
+
+  // Razorpay payment initiation function
+  const initiateRazorpayPayment = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/api/razers/create-order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ amount: 1000 }), // Amount in paise (for Rs.10.00)
+      });
+      const orderData = await response.json();
+
+      const options = {
+        key: process.env.REACT_APP_RAZORPAY_KEY_ID, // Add your Razorpay key here
+        amount: orderData.amount,
+        currency: "INR",
+        name: "Your Company Name",
+        description: "Order Payment",
+        order_id: orderData.id,
+        handler: function (response) {
+          onSavePaymentMethod('razorpay', response);
+        },
+        prefill: {
+          name: "Customer Name",
+          email: "customer@example.com",
+          contact: "9999999999",
+        },
+        theme: {
+          color: "#3399cc",
+        },
+      };
+
+      const razorpay = new window.Razorpay(options);
+      razorpay.open();
+    } catch (error) {
+      console.error("Error initiating Razorpay payment:", error);
+    }
   };
 
   return (
@@ -85,6 +128,15 @@ const PaymentMethod = ({ onSavePaymentMethod }) => {
           onChange={handlePaymentChange}
         />
         Net Banking
+      </Label>
+      <Label>
+        <RadioInput
+          type="radio"
+          value="razorpay"
+          checked={paymentMethod === 'razorpay'}
+          onChange={handlePaymentChange}
+        />
+        Razorpay
       </Label>
       {/* Add more payment options if necessary */}
       <Button onClick={handleSubmit}>Proceed with Payment</Button>
